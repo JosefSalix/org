@@ -35,15 +35,7 @@
                           (projects . 5)
                           (agenda  . 5))
         dashboard-center-content t
-        dashboard-show-shortcuts t)
-
-  ;; Definice vlastních zkratek (navigator)
-  (dashboard-set-navigator
-   '((recents  . "r")  ;; stisknutim 'r' otevres posledni soubory
-     (projects . "p")  ;; stisknutim 'p' otevres projekty
-     (agenda   . "a")  ;; stisknutim 'a' otevres agendu Org
-     ;; muzes pridat dalsi vlastni zkratky
-     )))
+        dashboard-show-shortcuts t))
 
 
 (provide 'nastroje)
