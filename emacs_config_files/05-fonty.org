@@ -1,0 +1,42 @@
+* Fonty
+
+#+begin_src emacs-lisp
+;; fonty.el -*- lexical-binding: t; -*-
+
+;; Konfigurace a nastaveni fontu.
+;; Tento soubor definuje pisma a jejich velikosti pro
+;; ruzne casti uzivatelskeho rozhrani Emacsu.
+
+;; Definice promennych pro velikosti pisma
+;; ----------------------------------------
+;; Ponechame velikosti v promennych, aby se daly snadno zmenit
+;; na jednom miste, pokud bude treba.
+(defvar jsp/default-font-size 120
+  "Vychozi velikost pro monospaced font.")
+
+(defvar jsp/default-variable-font-size 130
+  "Vychozi velikost pro proportionalni font.")
+
+;; Nastaveni pisma pro ruzne typy textu
+;; -------------------------------------
+;; Pouzivame =set-face-attribute= k aplikaci konkretnich fontu
+;; na ruzne "tvare" (faces). Tvary jsou kategorie textu s vlastnimi
+;; atributy, jako je pismo, velikost a barva.
+(set-face-attribute 'default nil
+  :family "JetBrains Mono"
+  :height jsp/default-font-size)
+
+(set-face-attribute 'fixed-pitch nil
+  :family "JetBrains Mono"
+  :height jsp/default-font-size)
+
+(set-face-attribute 'variable-pitch nil
+  :family "Fira Code"
+  :height jsp/default-variable-font-size
+  :weight 'regular)
+
+
+(provide 'fonty)
+
+;; fonty.el ends here
+#+end_src
