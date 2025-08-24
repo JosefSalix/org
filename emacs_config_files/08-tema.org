@@ -1,0 +1,23 @@
+* Tema
+
+#+begin_src emacs-lisp
+;; tema.el -*- lexical-binding: t; -*-
+
+;; Nastaveni a konfigurace barevneho motivu.
+;; Tento soubor se zameruje na rizeni vzhledu barevneho schematu
+;; v celem Emacsu.
+
+(use-package doom-themes
+  ;; Zajisti instalaci balicku, pokud neni k dispozici.
+  :ensure t
+  ;; Blok ':config' se spusti po nacteni balicku.
+  ;; Je to standardni misto pro konfiguraci.
+  :config
+  ;; Nacte motiv 'doom-palenight' hned po startu Emacsu.
+  (load-theme 'doom-palenight t))
+
+
+(provide 'tema)
+
+;; tema.el ends here
+#+end_src
