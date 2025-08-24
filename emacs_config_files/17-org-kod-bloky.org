@@ -1,0 +1,36 @@
+* Org-kod-bloky
+
+#+begin_src emacs-lisp
+;; org-kod-bloky.el -*- lexical-binding: t; -*-
+
+;; Tento modul povoluje spousteni bloku kodu v Org Mode.
+;; Konfiguruje podporu pro ruzne jazyky a zvyrazneni syntaxe.
+
+;; Povolene jazyky v Org Babel
+;; ----------------------------
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)  ;; povolit elisp bloky
+   (python . t)      ;; povolit python bloky
+   (C . t)           ;; povolit C
+   (shell . t)       ;; povolit shell skripty (bash, sh, atd.)
+   (sql . t)))       ;; povolit SQL dotazy
+
+;; Pouziti Python 3 pro org-babel
+;; -------------------------------
+(setq org-babel-python-command "python3")
+
+;; Pridani vlastniho jazyka pro zvyrazneni
+;; ----------------------------------------
+(push '("conf-unix" . conf-unix) org-src-lang-modes)
+
+;; Bezpecnostni volba (volitelne)
+;; ------------------------------
+;; Pokud nechces porad potvrzovat spousteni kodu (mene bezpecne)
+;; (setq org-confirm-babel-evaluate nil)
+
+
+(provide 'org-kod-bloky)
+
+;; org-kod-bloky.el ends here
+#+end_src
