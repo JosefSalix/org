@@ -23,7 +23,7 @@
   :hook (org-mode . jsp/org-mode-setup)  ;; aktivace funkce pri vstupu do Org Mode
   :config
   ;; Minimalni vzhledove nastaveni
-  (setq org-ellipsis " ↯"                ;; znak pro collapse
+  (setq org-ellipsis " ⤵"                ;; znak pro collapse
         org-startup-indented t           ;; zapnout odsazeni od zacatku
         org-hide-leading-stars t         ;; skryt puvodni *
         org-log-done 'time               ;; zapis casu pri DONE
