@@ -1,0 +1,85 @@
+* Org-vzhled
+
+#+begin_src emacs-lisp
+;; org-vzhled.el -*-lexical-binding: t; -*-
+
+;; Definice barevnych variant pro nadpisy
+;; ---------------------------------------
+(defvar my/org-level-colors-variants
+  '(
+    "#d45c59" "#6888cc" "#69b37a" "#d45878"   ;; varianta 1
+    "#d45c59" "#6888cc" "#d45878" "#69b37a"   ;; varianta 2
+    "#d45c59" "#69b37a" "#6888cc" "#d45878"   ;; varianta 3
+    "#d45c59" "#69b37a" "#d45878" "#6888cc"   ;; varianta 4
+    )
+  "Seznam barev pro org-level-1 az org-level-4.
+Kazda varianta obsahuje 4 barvy (pro urovne nadpisu 1 az 4).")
+
+;; Cislo vybrane barevne varianty
+;; -------------------------------
+(defvar my/org-color-variant 1
+  "Aktualne vybrana barevna varianta (1 az pocet variant).")
+
+;; Funkce pro vyber barevne varianty
+;; ----------------------------------
+(defun my/apply-org-colors-by-choice ()
+  "Interaktivni vyber barevne varianty pro nadpisy org-mode."
+  (interactive)
+  (let* ((max-variant (/ (length my/org-level-colors-variants) 4)) ; spocita kolik je variant
+         (choice (read-number (format "Vyber variantu (1-%d): " max-variant)
+                              my/org-color-variant)))
+    ;; ulozi vybranou variantu, ale zaroven zajisti aby byla v rozsahu
+    (setq my/org-color-variant (max 1 (min choice max-variant)))
+    ;; zavola nastaveni fontu a barev
+    (jsp/org-font-setup)
+    (message "Pouzita barevna varianta %d" my/org-color-variant)))
+
+;; globalni klavesova zkratka pro vyber varianty
+;; ----------------------------------------------
+(global-set-key (kbd "C-c o c") 'my/apply-org-colors-by-choice)
+
+;; Hlavni funkce pro nastaveni vzhledu v org-mode
+;; -----------------------------------------------
+(defun jsp/org-font-setup ()
+  "Nastavi font, barvy a fixed-pitch styly pro org-mode."
+
+  ;; --- Fonty a velikosti pro nadpisy (org-level-1 az org-level-8)
+  (dolist (face '((org-level-1 . 1.6)
+                  (org-level-2 . 1.5)
+                  (org-level-3 . 1.4)
+                  (org-level-4 . 1.3)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1)))
+    (set-face-attribute (car face) nil :font "Coiny" :weight 'regular :height (cdr face)))
+
+  ;; --- Barvy podle vybrane varianty (jen org-level-1 az 4)
+  (let* ((start (* 4 (1- my/org-color-variant))) ; vypocita index zacatku varianty
+         (colors (cl-subseq my/org-level-colors-variants start (+ start 4)))) ; vybere 4 barvy
+    (set-face-attribute 'org-level-1 nil :foreground (nth 0 colors))
+    (set-face-attribute 'org-level-2 nil :foreground (nth 1 colors))
+    (set-face-attribute 'org-level-3 nil :foreground (nth 2 colors))
+    (set-face-attribute 'org-level-4 nil :foreground (nth 3 colors)))
+
+  ;; --- Fixed-pitch pro ruzne prvky (kod, tabulky, checkboxy, ...)
+  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
+  (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
+  
+;; Po nacteni Org Mode aplikujeme barvy a fonty
+(with-eval-after-load 'org
+  (jsp/org-font-setup))
+  
+  
+(provide 'org-vzhled)
+  
+;; org-vzhled.el ends here
+#+end_src
