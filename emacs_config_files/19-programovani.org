@@ -1,0 +1,87 @@
+* Programovani
+
+#+begin_src emacs-lisp
+;; programovani.el -*- lexical-binding: t; -*-
+
+;; Konfigurace LSP, ladeni a autocompletion pro Emacs.
+
+;; Language Server Protocol (LSP)
+;; -------------------------------
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :hook ((python-mode . lsp-deferred)
+         (c-mode . lsp-deferred)
+         (c++-mode . lsp-deferred)
+         (sql-mode . lsp-deferred)
+         (lsp-mode . (lambda ()
+                       ;; breadcrumb
+                       (setq lsp-headerline-breadcrumb-segments
+                             '(path-up-to-project file symbols))
+                       (lsp-headerline-breadcrumb-mode))))
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t))
+
+;; Volitelne vizualni doplnky
+(use-package lsp-ui
+  :after lsp-mode
+  :commands lsp-ui-mode
+  :hook (lsp-mode . lsp-ui-mode)
+  :config
+  (setq lsp-ui-doc-enable t
+        lsp-ui-doc-position 'at-point
+        lsp-ui-sideline-enable t))
+
+;; Debug Adapter Protocol (DAP)
+;; -----------------------------
+(use-package dap-mode
+  :after lsp-mode
+  :config
+  ;; Zakladni konfigurace pro Python a C/C++
+  (require 'dap-python)
+  (setq dap-python-executable "/usr/bin/python3")
+  (require 'dap-lldb)
+  (setq dap-lldb-debug-program '("/usr/bin/lldb")))
+
+;; Python konfigurace
+;; -------------------
+;; Tohle napred nainstalujeme.
+;; Instalace se provadi v terminalu, ne v Emacsu!
+;; sudo apt install pipx
+;; sudo pipx ensurepath
+;; pipx install "python-language-server[all]"
+;; pipx ensurepath
+(use-package python-mode
+  :ensure t
+  :hook (python-mode . lsp-deferred)
+  :custom
+  (dap-python-debugger 'debugpy)
+  :config
+  (require 'dap-python))
+
+(use-package pyvenv
+  :config
+  (pyvenv-mode 1))
+
+;; Company - autocompletion
+;; -------------------------
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+              ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+              ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
+
+(provide 'programovani)
+
+;; programovani.el ends here
+#+end_src
