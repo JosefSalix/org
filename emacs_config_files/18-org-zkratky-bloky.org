@@ -1,0 +1,40 @@
+* Org-zkratky-bloky
+
+#+begin_src emacs-lisp
+;; org-zkratky-bloky.el -*- lexical-binding: t; -*-
+
+;; Modul nastavuje sablony src bloku pro rychle vkladani pomoci TAB.
+
+(require 'org-tempo)
+
+;; Kazda polozka v alistu definuje zkratku -> typ src bloku
+;; <sh<TAB>   -> #+begin_src shell ... #+end_src
+;; <el<TAB>   -> #+begin_src emacs-lisp ... #+end_src
+;; <py<TAB>   -> #+begin_src python ... #+end_src
+;; <c<TAB>    -> #+begin_src C ... #+end_src
+;; <sql<TAB>  -> #+begin_src sql ... #+end_src
+;; <conf<TAB> -> #+begin_src conf-unix ... #+end_src
+
+(unless (assoc "sh" org-structure-template-alist)
+  (add-to-list 'org-structure-template-alist '("sh"   . "src shell")))
+
+(unless (assoc "el" org-structure-template-alist)
+  (add-to-list 'org-structure-template-alist '("el"   . "src emacs-lisp")))
+
+(unless (assoc "py" org-structure-template-alist)
+  (add-to-list 'org-structure-template-alist '("py"   . "src python")))
+
+(unless (assoc "c" org-structure-template-alist)
+  (add-to-list 'org-structure-template-alist '("c"    . "src C")))
+
+(unless (assoc "sql" org-structure-template-alist)
+  (add-to-list 'org-structure-template-alist '("sql"  . "src sql")))
+
+(unless (assoc "conf" org-structure-template-alist)
+  (add-to-list 'org-structure-template-alist '("conf" . "src conf-unix")))
+
+
+(provide 'org-zkratky-bloky)
+
+;; org-zkratky-bloky.el ends here
+#+end_src
