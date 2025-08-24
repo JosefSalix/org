@@ -1,0 +1,36 @@
+* Org-zaklad
+
+#+begin_src emacs-lisp
+;; org-zaklad.el -*- lexical-binding: t; -*-
+
+;; Tento modul obsahuje pouze zakladni inicializaci Org Mode:
+;;   - odsazovani nadpisu
+;;   - proporcni font pro text
+;;   - vizualni zalamovani dlouhych radku
+;;   - minimalni vzhledove volby (ellipsis, logy, skryte hvezdy)
+
+;; Funkce pro inicializaci Org Mode
+;; ---------------------------------
+(defun jsp/org-mode-setup ()
+  "Vlastni nastaveni pro Org mode."
+  (org-indent-mode)        ;; odsazovani podle hierarchie nadpisu
+  (variable-pitch-mode 1)  ;; pouziti proporcniho fontu pro text
+  (visual-line-mode 1))    ;; zalamovani dlouhych radku vizualne
+   
+;; Use-package konfigurace
+;; ------------------------
+(use-package org
+  :hook (org-mode . jsp/org-mode-setup)  ;; aktivace funkce pri vstupu do Org Mode
+  :config
+  ;; Minimalni vzhledove nastaveni
+  (setq org-ellipsis " ↯"                ;; znak pro collapse
+        org-startup-indented t           ;; zapnout odsazeni od zacatku
+        org-hide-leading-stars t         ;; skryt puvodni *
+        org-log-done 'time               ;; zapis casu pri DONE
+        org-log-into-drawer t))          ;; log do draweru
+        
+
+(provide 'org-zaklad)
+
+;; org-zaklad.el ends here
+#+end_src
