@@ -1,0 +1,44 @@
+* Zalozni-soubory
+
+#+begin_src emacs-lisp
+;; zalozni-soubory.el -*- lexical-binding: t; -*-
+
+;; Sprava docasnych a zaloznich souboru.
+;; Tento soubor nastavuje, kam emacs uklada docasne soubory,
+;; jako jsou automaticke zalohy a zalozni verze souboru.
+;; Udrzi tak tvuj domovsky adresar uklizeny.
+
+;; Instalace a aktivace balicku no-littering
+;; ------------------------------------------
+;; no-littering presmeruje ruzne docasne soubory (cache,
+;; automaticke ulozeni, atd.) do samostatnych slozek ve
+;; =~/.emacs.d/var= nebo =~/.emacs.d/etc=.
+(use-package no-littering)
+
+;; Automaticke ukladani souboru
+;; -----------------------------
+;; Presuneme automaticky ukladane soubory (jako `filename#`)
+;; do slozky =auto-save/= pro lepsi prehlednost.
+(setq auto-save-file-name-transforms
+  `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+;; Zalozni soubory
+;; -----------------
+;; Presuneme zalozni soubory (ty s `~` na konci)
+;; do slozky =backup/= pro cisty domovsky adresar.
+(setq backup-directory-alist `((".*" . ,(no-littering-expand-var-file-name "backup/"))))
+
+;; Strategie rizeni verzi pro zalohy
+;; ----------------------------------
+;; Emacs bude automaticky spravovat vice verzi zaloh
+;; bez zbytecnych dotazu.
+(setq delete-old-versions t) ;; Maze stare verze bez dotazu.
+(setq kept-new-versions 6)   ;; Uchova 6 nejnovejsich zaloh.
+(setq kept-old-versions 2)   ;; Uchova 2 nejstarsi zalohy.
+(setq version-control t)     ;; Umozni cislovane zalohy (filename.~1~, filename.~2~, atd.).
+
+
+(provide 'zalozni-soubory)
+
+;; zalozni-soubory.el ends here
+#+end_src
