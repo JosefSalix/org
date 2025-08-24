@@ -3,12 +3,8 @@
 #+begin_src emacs-lisp
 ;; init.el -*- lexical-binding: t; -*-
 
-;; Commentary:
-
 ;; Hlavni konfiguracni soubor emacsu.
 ;; Vse se zacina nacitat odtud.
-
-;; Code:
 
 ;; Uklid konfigurace
 ;; ------------------
