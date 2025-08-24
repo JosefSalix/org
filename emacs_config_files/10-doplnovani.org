@@ -1,0 +1,56 @@
+* Doplnovani
+
+#+begin_src emacs-lisp
+;; doplnovani.el -*- lexical-binding: t; -*-
+
+;; Moderni nahrada za Ivy/Counsel/Ivy-Rich/Ivy-Prescient
+;; s vertico, orderless, marginalia, consult a helpful.
+
+;; Vertico – framework pro completions
+;; ------------------------------------
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode 1))
+
+;; Orderless – inteligentni filtrovani polozek
+;; --------------------------------------------
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
+
+;; Marginalia – pridani doplnujicich informaci do completions
+;; -----------------------------------------------------------
+(use-package marginalia
+  :ensure t
+  :init
+  (marginalia-mode 1))
+
+;; Consult – prakticke prikazy typu Counsel
+(use-package consult
+  :ensure t
+  :bind
+  (("C-s" . consult-line)      ;; Hledani v aktualnim bufferu (nahrazuje swiper)
+   ("C-M-j" . consult-buffer)  ;; Prepinani bufferu (nahrazuje counsel-switch-buffer)
+   :map minibuffer-local-map
+   ("C-r" . consult-history))) ;; Historie minibufferu
+
+;; Helpful – moderni napoveda
+;; ---------------------------
+(use-package helpful
+  :ensure t
+  :bind
+  ([remap describe-function] . helpful-callable)
+  ([remap describe-command]  . helpful-command)
+  ([remap describe-variable] . helpful-variable)
+  ([remap describe-key]      . helpful-key))
+
+
+(provide 'doplnovani)
+
+;; doplnovani.el ends here
+
+#+end_src
