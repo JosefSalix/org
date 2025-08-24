@@ -27,7 +27,8 @@
         org-startup-indented t           ;; zapnout odsazeni od zacatku
         org-hide-leading-stars t         ;; skryt puvodni *
         org-log-done 'time               ;; zapis casu pri DONE
-        org-log-into-drawer t))          ;; log do draweru
+        org-log-into-drawer t            ;; log do draweru
+	      org-hide-emphasis-markers t))    ;; skryje znacky kolem formatovani
         
 
 (provide 'org-zaklad)
