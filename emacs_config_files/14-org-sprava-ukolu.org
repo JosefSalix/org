@@ -1,0 +1,34 @@
+* Org-sprava-ukolu
+
+#+begin_src emacs-lisp
+;; org-sprava-ukolu.el -*- lexical-binding: t; -*-
+
+;; Tento modul obsahuje pouze definici vlastnich stavu TODO a jejich barevne zvyrazneni.
+;; Cilem je modularni oddeleni spravy ukolu od vizualnich a agendovych konfiguraci.
+
+;; TODO stavy
+;; -----------
+(setq org-todo-keywords
+      '((sequence
+         "TODO(t)"     ; t = TODO
+         "DOING(d)"    ; d = DOING
+         "WAITING(w)"  ; w = WAITING
+         "|"
+         "DONE(x)"     ; x = DONE
+         "CANCELED(c)" ; c = CANCELED
+         )))
+
+;; Barevne zvyrazneni stavu TODO
+;; ------------------------------
+(setq org-todo-keyword-faces
+      '(("TODO"     . (:foreground "#ff6c6b" :weight bold :height 0.8 :family "JetBrainsMono Nerd Font"))
+        ("DOING"    . (:foreground "#ECBE7B" :weight bold :height 0.8 :family "JetBrainsMono Nerd Font"))
+        ("WAITING"  . (:foreground "#51afef" :weight bold :height 0.8 :family "JetBrainsMono Nerd Font"))
+        ("DONE"     . (:foreground "#98be65" :weight bold :height 0.8 :family "JetBrainsMono Nerd Font"))
+        ("CANCELED" . (:foreground "#5c6370" :weight bold :height 0.8 :family "JetBrainsMono Nerd Font"))))
+
+
+(provide 'org-sprava-ukolu)
+
+;; org-sprava-ukolu.el ends here
+#+end_src
