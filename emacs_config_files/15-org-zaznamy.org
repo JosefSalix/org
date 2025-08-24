@@ -1,0 +1,32 @@
+* Org-zaznamy
+
+#+begin_src emacs-lisp
+;; org-zaznamy.el -*- lexical-binding: t; -*-
+
+;; Tento modul obsahuje definici vlastnich org-capture sablon a
+;; globalnich klavesovych zkratek.
+
+;; Capture sablony
+;; ----------------
+(setq org-capture-templates
+      '(("t" "Task" entry
+         (file+olp "~/org/Tasks.org" "Inbox")
+         "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
+        ("j" "Journal" entry
+         (file+datetree "~/org/Journal.org")
+         "* %U - %?\n  %i\n" :clock-in t :clock-resume t :empty-lines 1)
+        ("m" "Metrics" table-line
+         (file+headline "~/org/Metrics.org" "Weight")
+         "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
+
+;; Globalni klavesove zkratky pro Capture
+;; ---------------------------------------
+(define-key global-map (kbd "C-c j") (lambda () (interactive) (org-capture nil "j")))
+(define-key global-map (kbd "C-c t") (lambda () (interactive) (org-capture nil "t")))
+(define-key global-map (kbd "C-c m") (lambda () (interactive) (org-capture nil "m")))
+
+
+(provide 'org-zaznamy)
+
+;; org-zaznamy.el ends here
+#+end_src
