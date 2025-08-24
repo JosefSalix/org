@@ -1,0 +1,36 @@
+* Projekty
+
+#+begin_src emacs-lisp
+;; projekty.el -*- lexical-binding: t; -*-
+
+;; Nastaveni pro praci s projekty
+;; -------------------------------
+;; Tento soubor konfiguruje Projectile
+;; pro snazsi navigaci a spravu projektu.
+
+;; Projectile - sprava projektu a rychla navigace
+;; -----------------------------------------------
+;; Projectile je balicek, ktery zjednodusuje praci s projekty
+;; diky automatickemu rozpoznani a rychlym zkratkam pro navigaci.
+(use-package projectile
+  :diminish projectile-mode
+  :init
+  ;; Cesty, kde se budou vyhledavat projekty
+  (when (file-directory-p "~/Projects/Code")
+    (setq projectile-project-search-path '("~/Projects/Code")))
+  ;; Po prepnuti projektu se otevre Dired
+  (setq projectile-switch-project-action #'projectile-dired)
+  :config
+  ;; Zapneme projectile-mode pri startu
+  (projectile-mode)
+  ;; Pouzijeme standardni completing-read (funguje s Vertico)
+  (setq projectile-completion-system 'default)
+  ;; Prefix C-c p pro prikazy Projectile
+  :bind-keymap
+  ("C-c p" . projectile-command-map))
+
+
+(provide 'projekty)
+
+;; projekty.el ends here
+#+end_src
