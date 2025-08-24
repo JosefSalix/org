@@ -1,0 +1,111 @@
+* Vzhled
+
+#+begin_src emacs-lisp
+;; vzhled.el -*- lexical-binding: t; -*-
+
+;; Konfigurace uzivatelskeho rozhrani.
+;; Tento soubor nastavuje vzhled Emacsu, od pruhlednosti okna
+;; po ikony a zvyrazneni kodu.
+
+;; Nastaveni pruhlednosti okna
+;; ----------------------------
+;; Definujeme promennou pro pruhlednost a funkci, ktera ji dynamicky meni.
+(defvar jsp/frame-transparency '(90 . 90)
+  "Pruhlednost okna: popredi a pozadi.")
+
+;; Funkce pro zmenu pruhlednosti
+;; ------------------------------
+;; Umoznuje uzivateli zadat hodnotu a okamzite zmenit
+;; pruhlednost aktualniho okna.
+(defun jsp/set-transparency (alpha)
+  "Nastavi pruhlednost okna na ALPHA (0 - 100)."
+  (interactive "nZadej procenta nepruhlednosti (0-100): ")
+  (set-frame-parameter (selected-frame) 'alpha `(,alpha . ,alpha))
+  (add-to-list 'default-frame-alist `(alpha . (,alpha . ,alpha))))
+
+;; Aplikace pruhlednosti pri startu
+;; ---------------------------------
+;; Nastavime vychozi hodnotu a zajistime, ze nova okna budou mit
+;; take stejnou pruhlednost.
+(set-frame-parameter (selected-frame) 'alpha jsp/frame-transparency)
+(add-to-list 'default-frame-alist `(alpha . ,jsp/frame-transparency))
+
+;; Minimalisticke uzivatelske rozhrani
+;; ------------------------------------
+;; Odstraneni rusiveho UI, aby se Emacs soustredil jen na text.
+;; Vypne uvodni obrazovku.
+(setq inhibit-startup-screen t)
+
+;; Vyprazdni text ve scratch bufferu.
+(setq initial-scratch-message "")
+
+;; Skryje posuvnik.
+(scroll-bar-mode -1)
+
+;; Skryje horni panel s nastroji.
+(tool-bar-mode -1)
+
+;; Vypne bubliny s napovedou.
+(tooltip-mode -1)
+
+;; Nastavi okraje po stranach okna.
+(set-fringe-mode 10)
+
+;; Vypne horni menu.
+(menu-bar-mode -1)
+
+;; Pouziva vizualni "zvoneni" misto zvukoveho.
+(setq visible-bell t)
+
+;; Zobrazi cislo sloupce na stavove radce.
+(column-number-mode)
+
+;; Zapne cislovani radku pro kod.
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+;; Maximializuje okno Emacsu.
+(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
+
+;; Zajisti, ze i nove okno bude maximalizovane.
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; Vylepseni vzhledu a modeline
+;; -----------------------------
+;; Pouziti balicku pro moderni a prehledne UI.
+;; Balicek, ktery poskytuje ikony.
+(use-package all-the-icons)
+
+;; Moderni a prehledny stavovy radek.
+(use-package doom-modeline
+  :init
+  (doom-modeline-mode 1)
+  :custom
+  ;; --- upravi vysku stavove radky.
+  ((doom-modeline-height 27)))
+
+;; Zvyraznovani syntaxe
+;; ---------------------
+;; Balicky pro lepsi vizualni orientaci v kodu.
+;; Obarvi zavorky podle urovne zanoreni.
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+;; Zvyrazneni odpovidajicich zavorek
+(show-paren-mode 1)
+
+;; Automaticke doplnovani parovych znaku ((), {}, [], "")
+(electric-pair-mode 1)
+
+;; Zvyrazni sloupce odsazeni.
+(use-package highlight-indent-guides
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-method 'column)
+  (highlight-indent-guides-auto-enabled t)
+  (highlight-indent-guides-responsive 'top))
+
+
+(provide 'vzhled)
+
+;; vzhled.el ends here
+#+end_src
