@@ -1,0 +1,56 @@
+* Sprava-balicku
+
+#+begin_src emacs-lisp
+;; sprava-balicku.el -*- lexical-binding: t; -*-
+
+;; Sprava balicku a jejich zdroju.
+;; Tento soubor se stara o nastaveni package.el a use-package,
+;; coz jsou hlavni nastroje pro instalaci a konfiguraci doplnku.
+
+;; Nacteni balickoveho manazeru
+;; -----------------------------
+;; Povolime vestaveny system balicku.
+(require 'package)
+
+;; Nastaveni zdroju balicku
+;; -------------------------
+;; Pridame repozitare, ze kterych budeme stahovat balicky.
+;; MELPA je nejcastejsi zdroj pro nove balicky.
+(setq package-archives
+  '(("melpa" . "https://melpa.org/packages/")
+    ("org"   . "https://orgmode.org/elpa/")
+    ("elpa"  . "https://elpa.gnu.org/packages/")))
+
+;; Priprava balickoveho systemu
+;; -----------------------------
+;; Inicializujeme package.el, aby se balicky mohly nacitat.
+(unless package--initialized
+  (package-initialize))
+
+;; Aktualizace seznamu balicku
+;; ----------------------------
+;; Stahneme aktualni seznam balicku ze vsech zdroju,
+;; pokud uz neni k dispozici.
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; Instalace a nastaveni use-package
+;; ----------------------------------
+;; Use-package je balicek, ktery zjednodusuje konfiguraci jinych
+;; balicku. Zajistime, ze je nainstalovany a nastavime ho.
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
+
+;; Globalni nastaveni pro use-package.
+;; Vzdy se ujistime, ze balicky, ktere nastavujeme,
+;; jsou nainstalovany a ze vidime detailni log.
+(setq use-package-always-ensure t
+      use-package-verbose t)
+
+
+(provide 'sprava-balicku)
+
+;; sprava-balicku.el ends here
+#+end_src
