@@ -1,0 +1,33 @@
+* Org-suprstar
+
+#+begin_src emacs-lisp
+;; org-suprstar.el -*-lexical-binding: t; -*-
+
+;; Hezci znaky pro nadpisy a bullet listy
+;; ---------------------------------------
+;; Tento balicek vylepsuje vzhled bullet bodu a nadpisu v Org Mode.
+;; Dulezite: org-superstar-mode se aktivuje hookem pri vstupu do Org Mode.
+(use-package org-superstar
+  :ensure t
+  ;; aktivace modulu pri vstupu do Org Mode
+  :hook (org-mode . org-superstar-mode)
+
+  :config
+  ;; definice vlastnich znaku pro nadpisy (headline bullets)
+  ;; prvni urovne, druha, treti, ctvrta
+  (setq org-superstar-headline-bullets-list '("◉" "◎" "★" "✶"))
+
+  ;; definice vlastnich znaku pro bullet body seznamu (+, *, -)
+  ;; znak vpravo je ten, ktery se zobrazi misto puvodniho
+  (setq org-superstar-item-bullet-alist '((?+ . ?➜) (?* . ?➝) (?- . ?➤)))
+  ;; skryje puvodni hvezdicky pred nadpisy
+  (setq org-hide-leading-stars t)
+  ;; znak, ktery se pouzije misto skrytych hvezdicek
+  ;; ?\s znamena mezera
+  (setq org-superstar-leading-bullet ?\s))
+  
+  
+(provide 'org-suprstar)
+
+;; org-suprstar.el ends here
+#+end_src
