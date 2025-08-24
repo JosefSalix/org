@@ -15,8 +15,8 @@
 
 ;; Forge je volitelny add-on pro Magit, ktery umoznuje praci s GitHub/GitLab issues a pull requests.
 ;; Pokud nemas Emacs >= 29.1, Forge se nainstalovat nepovede, proto ho vynechame.
-;; (use-package forge
-;;   :ensure t)
+(use-package forge
+  :ensure t)
 
 
 (provide 'verzovani)
