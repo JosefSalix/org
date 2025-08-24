@@ -1,0 +1,25 @@
+* Verzovani
+
+#+begin_src emacs-lisp
+;; verzovani.el -*- lexical-binding: t; -*-
+
+;; Nastaveni pro praci s Gitem a balickem Magit
+;;----------------------------------------------
+;; Tento soubor konfiguruje Magit, coz je skvely nastroj
+;; pro ovladani Gitu primo z Emacsu.
+(use-package magit
+  :ensure t  ;; zajisti instalaci balicku, pokud neni nainstalovan
+  :custom
+  ;; Otevreni Magit bufferu ve stejnem okne krome diff
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+;; Forge je volitelny add-on pro Magit, ktery umoznuje praci s GitHub/GitLab issues a pull requests.
+;; Pokud nemas Emacs >= 29.1, Forge se nainstalovat nepovede, proto ho vynechame.
+;; (use-package forge
+;;   :ensure t)
+
+
+(provide 'verzovani)
+
+;; verzovani.el ends here
+#+end_src
