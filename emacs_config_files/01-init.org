@@ -1,0 +1,34 @@
+* Init soubor
+
+#+begin_src emacs-lisp
+;; init.el -*- lexical-binding: t; -*-
+
+;; Commentary:
+
+;; Hlavni konfiguracni soubor emacsu.
+;; Vse se zacina nacitat odtud.
+
+;; Code:
+
+;; Uklid konfigurace
+;; ------------------
+;; Automaticky ukladane nastaveni emacsu presuneme do 
+;; samostatnehho souboru, aby nam neznecistovalo =init.el=
+(setq custom-file "~/.emacs.d/config/custom.el")
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+;; Nastaveni cest pro balicky
+;; ---------------------------
+;; Rekneme emacsu, kde ma hledat nase konfiguracni moduly.
+(add-to-list 'load-path (expand-file-name "config" user-emacs-directory))
+
+;; Nacitani modulu
+;; ----------------
+;; Pomoci =require= rekneme emacsu, aby nasel a spustil dany modul.
+;; Diky tomu mezeme mit logicky oddelenou konfiguraci.
+;; (require '<modul>)
+
+
+;; init.el ends here
+#+end_src

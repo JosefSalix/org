@@ -1,0 +1,3 @@
+* Custom
+
+  Zatim jenom soubor vytvorime. Pozdeji budeme pridavat =set-custom-faces=.
