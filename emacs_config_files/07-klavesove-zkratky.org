@@ -1,0 +1,112 @@
+* Klavesove-zkratky
+
+#+begin_src emacs-lisp
+;; klavesove-zkratky.el -*- lexical-binding: t; -*-
+
+;; Leader key je C-SPC.
+
+;; Inicializace which-key
+;; -----------------------
+(use-package which-key
+  :ensure t
+  :init
+  (which-key-mode)
+  :config
+  (setq which-key-idle-delay 0.3))
+
+;; Leader key
+;; -----------
+(define-prefix-command 'my-leader-map)
+(global-set-key (kbd "C-SPC") 'my-leader-map)
+
+;; Toggles
+;; --------
+(define-key my-leader-map (kbd "t t") #'load-theme)
+
+;; Files
+;; ------
+(define-key my-leader-map (kbd "f f") #'find-file)
+(define-key my-leader-map (kbd "f s") #'save-buffer)
+(define-key my-leader-map (kbd "f r") #'recentf-open-files)
+
+;; Buffers
+;; --------
+(define-key my-leader-map (kbd "b b") #'switch-to-buffer)
+(define-key my-leader-map (kbd "b k") #'kill-buffer)
+
+;; Windows
+;; --------
+(define-key my-leader-map (kbd "w v") #'split-window-right)
+(define-key my-leader-map (kbd "w s") #'split-window-below)
+(define-key my-leader-map (kbd "w d") #'delete-window)
+
+;; Search
+;; -------
+(define-key my-leader-map (kbd "s s") #'isearch-forward)
+
+;; Quit
+;; -----
+(define-key my-leader-map (kbd "q q") #'save-buffers-kill-terminal)
+
+;; Avy – rychly pohyb v bufferu
+;; -----------------------------
+(define-key my-leader-map (kbd "a c") #'avy-goto-char)
+(define-key my-leader-map (kbd "a w") #'avy-goto-word-1)
+(define-key my-leader-map (kbd "a l") #'avy-goto-line)
+
+;; Emojify – vlozeni emoji
+;; ------------------------
+(define-key my-leader-map (kbd "e i") #'emojify-insert-emoji)
+(define-key my-leader-map (kbd "e t") #'emojify-toggle)
+
+;; Komentovani pres M-/ (Emacs 28+)
+;; ---------------------------------
+(global-set-key (kbd "M-/") #'comment-line)
+
+;; ESC pro ukonceni promptu/minibufferu
+;; -------------------------------------
+(global-set-key (kbd "<escape>") #'keyboard-escape-quit)
+
+;; Zvetseni textu
+;; ---------------
+(global-set-key (kbd "C-=") 'text-scale-increase)
+
+;; Zmenseni textu
+;; ---------------
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
+;; Reset velikosti textu na vychozi
+;; ---------------------------------
+(global-set-key (kbd "C-0") (lambda () (interactive) (text-scale-set 0)))
+                               
+;; Zkratky pro terminaly
+;; ----------------------
+(with-eval-after-load 'vterm
+  (global-set-key (kbd "C-c t") #'vterm))
+
+(with-eval-after-load 'eshell
+  (global-set-key (kbd "C-c e") #'eshell))
+
+(with-eval-after-load 'term
+  (global-set-key (kbd "C-c T") #'term))
+                               
+;; Zkratky pro emojify
+;; --------------------
+(with-eval-after-load 'emojify
+  (global-set-key (kbd "C-c .") #'emojify-insert-emoji))
+
+;; Zkratky pro DAP
+;; ----------------
+(with-eval-after-load 'dap-mode
+  (define-key lsp-mode-map (kbd "C-c l d b") #'dap-breakpoint-toggle)
+  (define-key lsp-mode-map (kbd "C-c l d c") #'dap-continue)
+  (define-key lsp-mode-map (kbd "C-c l d i") #'dap-step-in)
+  (define-key lsp-mode-map (kbd "C-c l d o") #'dap-step-out)
+  (define-key lsp-mode-map (kbd "C-c l d n") #'dap-next)
+  (define-key lsp-mode-map (kbd "C-c l d r") #'dap-restart-frame)
+  (define-key lsp-mode-map (kbd "C-c l d q") #'dap-disconnect))
+
+(provide 'klavesove-zkratky)
+
+;; klavesove-zkratky.el ends here
+#+end_src
