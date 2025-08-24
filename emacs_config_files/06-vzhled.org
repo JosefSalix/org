@@ -96,14 +96,6 @@
 ;; Automaticke doplnovani parovych znaku ((), {}, [], "")
 (electric-pair-mode 1)
 
-;; Zvyrazni sloupce odsazeni.
-(use-package highlight-indent-guides
-  :hook (prog-mode . highlight-indent-guides-mode)
-  :custom
-  (highlight-indent-guides-method 'column)
-  (highlight-indent-guides-auto-enabled t)
-  (highlight-indent-guides-responsive 'top))
-
 
 (provide 'vzhled)
 
