@@ -15,11 +15,11 @@
   :config
   ;; definice vlastnich znaku pro nadpisy (headline bullets)
   ;; prvni urovne, druha, treti, ctvrta
-  (setq org-superstar-headline-bullets-list '("◉" "◎" "★" "✶"))
+  (setq org-superstar-headline-bullets-list '("◉" "⊚" "★" "✶"))
 
   ;; definice vlastnich znaku pro bullet body seznamu (+, *, -)
   ;; znak vpravo je ten, ktery se zobrazi misto puvodniho
-  (setq org-superstar-item-bullet-alist '((?+ . ?➜) (?* . ?➝) (?- . ?➤)))
+  (setq org-superstar-item-bullet-alist '((?+ . ?•) (?* . ?➝) (?- . ?➤)))
   ;; skryje puvodni hvezdicky pred nadpisy
   (setq org-hide-leading-stars t)
   ;; znak, ktery se pouzije misto skrytych hvezdicek
