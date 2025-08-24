@@ -1,0 +1,39 @@
+* Spravce-souboru
+
+#+begin_src emacs-lisp
+;; spravce-souboru.el -*- lexical-binding: t; -*-
+
+;; Konfigurace souboroveho manazeru Dired.
+;;----------------------------------------
+;; Tento soubor obsahuje nastaveni pro Dired a balicky,
+;; ktere z nej delaji moderni a pouzitelny nastroj.
+
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom
+  ((dired-listing-switches "-agho --group-directories-first")))
+
+(use-package diredfl
+  ;; Barevne zvyrazneni v Dired bufferu
+  :hook (dired-mode . diredfl-mode))
+
+(use-package all-the-icons-dired
+  ;; Ikony v Dired (vyzaduje nainstalovane fonty all-the-icons)
+  :hook (dired-mode . all-the-icons-dired-mode))
+
+(use-package dired-open
+  :config
+  ;; Otevirani souboru externimi programy
+  (setq dired-open-extensions
+        '(("png" . "feh")
+          ("mkv" . "mpv"))))
+
+(use-package dired-hide-dotfiles
+  :hook (dired-mode . dired-hide-dotfiles-mode))
+
+(provide 'spravce-souboru)
+
+;; spravce-souboru.el ends here
+#+end_src
