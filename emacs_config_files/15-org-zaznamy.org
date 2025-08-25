@@ -10,6 +10,7 @@
 ;; ----------------
 (setq org-capture-templates
       '(("t" "Task" entry
+         ;; musime vytvorit soubor s nadpisem level 1 "Inbox"
          (file+olp "~/repos/github/org/rychle_poznamky/tasks.org" "Inbox")
          "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
         ("j" "Journal" entry
