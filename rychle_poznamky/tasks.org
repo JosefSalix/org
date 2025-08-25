@@ -6,3 +6,6 @@
 ** TODO org-capture :: poznamky od gemini
   [2025-08-25 Mon 22:36]
 
+** TODO zacit uz neco jineho nez emacs!
+  [2025-08-25 Mon 22:42]
+
