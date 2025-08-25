@@ -13,8 +13,25 @@
   ;; Blok ':config' se spusti po nacteni balicku.
   ;; Je to standardni misto pro konfiguraci.
   :config
-  ;; Nacte motiv 'doom-palenight' hned po startu Emacsu.
-  (load-theme 'doom-palenight t))
+  ;; Povolit tucne a kurzivni pismo v doom-themes a
+  ;; pouzivat: cursor-block (lepsi viditelnost)
+  (setq doom-themes-enable-bold t
+	doom-themes-enable-italic t
+	doom-themes-enable-block-cursor t)
+
+  ;; Funkce pro prepinani temat
+  (defun jsp/set-dark-theme ()
+    "Nastavi tmave tema."
+    (interactive)
+    (load-theme 'doom-city-lights t))
+
+  (defun jsp/set-light-theme ()
+    "Nastavi svetle tema."
+    (interactive)
+    (load-theme 'doom-tomorrow-day t))
+  
+  ;; Nacteni vychoziho (tmaveho) tematu pri startu
+  (jsp/set-dark-theme))
 
 
 (provide 'tema)
