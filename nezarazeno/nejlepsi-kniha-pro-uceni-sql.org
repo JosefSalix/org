@@ -1,0 +1,25 @@
+#+startup: content
+#+title:  Nejlepsi kniha pro uceni SQL
+#+author: JSP, GEM
+#+date:   2025-08-25
+
+
+
+
+* Nejlepsi kniha pro uceni SQL v terminalu?
+
+** SQL in 10 minutes
+
+- Komplexni a zamerena na zaklady ::
+  + Pokryva vse, co zacatecnik potrebuje vedet.
+
+- Prakticky pristup ::
+  + Jeji principy jsou univerzalni a snadno aplikovatelne na MySQL, PostgreSQL i SQLite.
+
+- Rychle a efektivni uceni ::
+  + Kazda kapitola je relativne kratka a soustredi se na jeden konkretni koncept.
+
+- Idealni pro terminal ::
+  + Zameruje se na ciste SQL. Budes se ucit, jak psat a spoustet SQL prikazy, coz je klicove pro spravu databazi z prikazove radky.
+
+Tato kniha ti poskytne pevny zaklad v SQL, diky ni se rychle zorientujes v ovladani databazi z terminalu.
