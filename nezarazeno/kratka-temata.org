@@ -1,0 +1,15 @@
+#+title:  Kratka temata, clanky, soubory
+#+author: JSP
+#+date:   2025-08-25
+#+startup: content
+
+
+
+
+** Cohesion - spellcheck
+
+Podle dokumentace na githubu muzeme aplikaci spustit s prepinacem =--disable-spellcheck=.
+
+#+begin_src shell
+flatpak run io.github.brunofin.Cohesion --disable-spellcheck
+#+end_src
