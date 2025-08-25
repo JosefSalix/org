@@ -3,11 +3,6 @@
 ** 2025-08 August
 *** 2025-08-25 Monday
 
-**** [2025-08-25 Mon 22:27] - naucit se poradne org-capture
-:LOGBOOK:
-CLOCK: [2025-08-25 Mon 22:27]--[2025-08-25 Mon 22:28] =>  0:01
-:END:
-
 **** [2025-08-25 Mon 23:09] - Pouziti xset pro vypnuti zhasinani obrazovky v i3
 
 Pro trvalou zmenu v i3 konfiguraci pridej tyto radky do sveho =~/.config/i3/config= souboru, pred "exec" radky.
