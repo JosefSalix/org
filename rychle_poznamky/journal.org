@@ -1,0 +1,10 @@
+
+* 2025
+** 2025-08 August
+*** 2025-08-25 Monday
+
+**** [2025-08-25 Mon 22:27] - naucit se poradne org-capture
+:LOGBOOK:
+CLOCK: [2025-08-25 Mon 22:27]--[2025-08-25 Mon 22:28] =>  0:01
+:END:
+
