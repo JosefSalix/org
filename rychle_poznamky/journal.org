@@ -8,3 +8,19 @@
 CLOCK: [2025-08-25 Mon 22:27]--[2025-08-25 Mon 22:28] =>  0:01
 :END:
 
+**** [2025-08-25 Mon 23:09] - Pouziti xset pro vypnuti zhasinani obrazovky v i3
+
+Pro trvalou zmenu v i3 konfiguraci pridej tyto radky do sveho =~/.config/i3/config= souboru, pred "exec" radky.
+
+#+begin_src shell
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
+#+end_src
+
+- xset :: se stara o to, aby obrazovka nezhasinala nebo nespoustela sporic po urcite dobe necinnosti.
+
+:LOGBOOK:
+CLOCK: [2025-08-25 Mon 23:09]--[2025-08-25 Mon 23:16] =>  0:07
+:END:
+
