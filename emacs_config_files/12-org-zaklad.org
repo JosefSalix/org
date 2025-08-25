@@ -28,7 +28,11 @@
         org-hide-leading-stars t         ;; skryt puvodni *
         org-log-done 'time               ;; zapis casu pri DONE
         org-log-into-drawer t            ;; log do draweru
-	    org-hide-emphasis-markers t))    ;; skryje znacky kolem formatovani
+	    org-hide-emphasis-markers t      ;; skryje znacky kolem formatovani
+        ;; nastavi vychozi slozku pro Org soubory
+        org-directory (expand-file-name "~/repos/github/org/")
+	    ;; nastavi vychozi soubor pro rychle poznamky (C-c c).
+        org-default-notes-file (expand-file-name "~/repos/github/org/rychle_poznamky/rychle-poznamky.org")))
         
 
 (provide 'org-zaklad)
