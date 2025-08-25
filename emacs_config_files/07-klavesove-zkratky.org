@@ -59,6 +59,11 @@
 (define-key my-leader-map (kbd "e i") #'emojify-insert-emoji)
 (define-key my-leader-map (kbd "e t") #'emojify-toggle)
 
+;; Prepinani barevnych temat
+;; --------------------------
+(define-key my-leader-map (kbd "s d") #'jsp/set-dark-theme)
+(define-key my-leader-map (kbd "s l") #'jsp/set-light-theme)
+
 ;; Komentovani pres M-/ (Emacs 28+)
 ;; ---------------------------------
 (global-set-key (kbd "M-/") #'comment-line)
