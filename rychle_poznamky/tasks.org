@@ -8,3 +8,10 @@
 
 ** TODO zacit uz neco jineho nez emacs!
   [2025-08-25 Mon 22:42]
+
+** TODO Zjistit informace o baliccich
+  [2025-08-26 Tue 12:31]
+
+  - org-super-agenda
+  - org-fancy-priorities
+
