@@ -19,3 +19,40 @@ exec --no-startup-id xset s noblank
 CLOCK: [2025-08-25 Mon 23:09]--[2025-08-25 Mon 23:16] =>  0:07
 :END:
 
+*** 2025-08-26 Tuesday
+
+**** DOING [2025-08-26 Tue 21:30] - CD command
+- cd - :: vrati nas do predchoziho adresare (jako tlacitko "zpet" v prohlizeci).
+- ~user :: homefolder jineho uzivatele (pokud mame opravneni).
+
+- Alias pro rychlejsi navigaci :: (~/.bashrc), napriklad:
+  + ~alias cdd='cd ~/Documents'~
+- Alias pro navrat o vice urovni nahoru ::
+  + ~alias ..='cd ..'~
+  + ~alias ...='cd ../..'~
+  + ~alias ....='cd ../../..'~
+
+- Zmena slozky a hned vypsani jejiho obsahu :: (casto se dava do .bashrc)
+  + ~cd() { builtin cd "$@" && ls; }~
+  + Prenese nas to a rovnou ukaze obsah (ls).
+
+- Zalozky (bookmarks), muzeme si nastavit promenne pro casto pouzivane cesty:
+  + ~export rem=/home/user/repos/github/org/~
+  + A pak pouzijeme: =cd $rem=
+
+- pushd a popd :: Prace se zasobnikem slozek.
+  + ~pushd~ -- prejde do adresare a prida ho na zasobnik
+  + ~popd~  -- vyskoci s aktualniho adresare a vrati se na predchozi
+
+- CDPATH :: rychly skok do slozek.
+  
+  #+begin_src shell
+  export CDPATH=.:~:~/Projekty
+  #+end_src
+
+  + Kdyz ted napiseme: =cd moje_apka=, bash nas rovnou hodi do =~/Projekty/moje_apka=, i kdyz zrovna nejsme v =~/Projekty=.
+
+:LOGBOOK:
+CLOCK: [2025-08-26 Tue 21:30]--[2025-08-26 Tue 21:31] =>  0:01
+:END:
+
