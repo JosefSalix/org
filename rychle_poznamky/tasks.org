@@ -9,6 +9,6 @@
 ** TODO zacit uz neco jineho nez emacs!
   [2025-08-25 Mon 22:42]
 
-** TODO nastav pismo pro org-block :: Pointfree
+** TODO [#A] nastav pismo pro org-block :: Pointfree
   [2025-08-25 Mon 23:19]
 
