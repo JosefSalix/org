@@ -1,3 +1,11 @@
 * Custom
 
   Zatim jenom soubor vytvorime. Pozdeji budeme pridavat =set-custom-faces=.
+
+  #+begin_src emacs-lisp
+  (set-custom-faces
+
+  '(org-block ((t (:family "Pointfree" :height 105))))
+
+  )
+  #+end_src
