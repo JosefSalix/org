@@ -15,3 +15,6 @@
   - org-super-agenda
   - org-fancy-priorities
 
+** TODO udelat sql tabulky ruznych prikazu
+  [2025-08-27 Wed 13:40]
+
