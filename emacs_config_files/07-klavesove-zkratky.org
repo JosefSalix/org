@@ -64,6 +64,10 @@
 (define-key my-leader-map (kbd "s d") #'jsp/set-dark-theme)
 (define-key my-leader-map (kbd "s l") #'jsp/set-light-theme)
 
+;; Eshell
+;; -------
+(define-key my-leader-map (kbd "o e") #'eshell)
+
 ;; Komentovani pres M-/ (Emacs 28+)
 ;; ---------------------------------
 (global-set-key (kbd "M-/") #'comment-line)
