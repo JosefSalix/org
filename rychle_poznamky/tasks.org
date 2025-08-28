@@ -18,3 +18,8 @@
 ** TODO udelat sql tabulky ruznych prikazu
   [2025-08-27 Wed 13:40]
 
+** TODO pridana nova kl. zkratka - duplicate line
+- updatovat 07-klavesove-zkratky.org
+  [2025-08-28 Thu 13:54]
+  [[file:~/.emacs.d/config/klavesove-zkratky.el::global-set-key (kbd "C-c d") 'duplicate-line]]
+
